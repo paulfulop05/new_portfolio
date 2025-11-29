@@ -4,31 +4,31 @@ import { ArrowRight } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
-      title: "Project Alpha",
-      description: "A full-stack application that helps teams collaborate in real-time with advanced features and integrations.",
-      tags: ["react", "typescript", "node.js", "postgres"],
-      stars: 147,
+      title: "TaskMaster Pro",
+      description: "A comprehensive task management application with team collaboration features, real-time updates, and advanced analytics.",
+      tags: ["react", "typescript", "firebase", "tailwind"],
+      stars: 342,
       link: "https://github.com"
     },
     {
-      title: "Project Beta",
-      description: "An open-source tool for developers to streamline their workflow and boost productivity.",
-      tags: ["python", "api", "automation", "devtools"],
-      stars: 89,
+      title: "CodeShare",
+      description: "Real-time code collaboration platform with syntax highlighting, multiple language support, and live cursor tracking.",
+      tags: ["react", "websocket", "node.js", "monaco-editor"],
+      stars: 189,
       link: "https://github.com"
     },
     {
-      title: "Project Gamma",
-      description: "A lightweight library that simplifies complex tasks with an intuitive API and excellent documentation.",
-      tags: ["javascript", "library", "open-source"],
+      title: "API Gateway",
+      description: "Lightweight API gateway with rate limiting, authentication, caching, and request transformation capabilities.",
+      tags: ["go", "redis", "docker", "kubernetes"],
+      stars: 567,
+      link: "https://github.com"
+    },
+    {
+      title: "Design System",
+      description: "Comprehensive React component library with accessibility features, theming support, and detailed documentation.",
+      tags: ["react", "storybook", "typescript", "css"],
       stars: 234,
-      link: "https://github.com"
-    },
-    {
-      title: "Project Delta",
-      description: "A modern CLI tool designed for efficiency, featuring smart defaults and powerful customization options.",
-      tags: ["go", "cli", "tool", "performance"],
-      stars: 56,
       link: "https://github.com"
     }
   ];
