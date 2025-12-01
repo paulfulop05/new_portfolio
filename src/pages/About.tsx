@@ -1,32 +1,46 @@
 import Navigation from "@/components/Navigation";
-import { Code2, Database, Palette, Zap, Lightbulb, Wrench, Briefcase } from "lucide-react";
+import { Code2, Database, Palette, Zap, Lightbulb, Wrench, Trophy } from "lucide-react";
+import profileImage from "@/assets/profile-placeholder.jpg";
 
 const About = () => {
   const skills = [
-    { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Vue.js"] },
-    { category: "Backend", items: ["Node.js", "Python", "PostgreSQL", "MongoDB", "Redis"] },
-    { category: "DevOps", items: ["Docker", "AWS", "CI/CD", "Kubernetes", "Linux"] },
-    { category: "Tools", items: ["Git", "VS Code", "Figma", "Postman", "Webpack"] },
+    { 
+      category: "Languages", 
+      items: ["JavaScript", "TypeScript", "Python", "Java", "C++"],
+      color: "text-blue-400"
+    },
+    { 
+      category: "Frameworks", 
+      items: ["React", "Next.js", "Vue.js", "Node.js", "Express"],
+      color: "text-green-400"
+    },
+    { 
+      category: "Concepts", 
+      items: ["REST APIs", "GraphQL", "Microservices", "CI/CD", "Agile"],
+      color: "text-purple-400"
+    },
+    { 
+      category: "Tools", 
+      items: ["Git", "Docker", "VS Code", "Figma", "Postman"],
+      color: "text-orange-400"
+    },
   ];
 
-  const experience = [
+  const achievements = [
     {
-      company: "Tech Company",
-      role: "Senior Software Engineer",
-      period: "2022 - Present",
-      description: "Leading development of core platform features and mentoring junior developers.",
+      title: "Open Source Contributor",
+      description: "Active contributor to popular open-source projects with over 1000+ stars combined.",
+      year: "2023",
     },
     {
-      company: "Startup Inc",
-      role: "Full Stack Developer",
-      period: "2020 - 2022",
-      description: "Built scalable web applications from scratch using modern tech stack.",
+      title: "Hackathon Winner",
+      description: "First place at National Tech Hackathon for innovative AI-powered solution.",
+      year: "2022",
     },
     {
-      company: "Digital Agency",
-      role: "Frontend Developer",
-      period: "2018 - 2020",
-      description: "Developed responsive websites and interactive web experiences for clients.",
+      title: "Published Article",
+      description: "Technical article on distributed systems published in major tech publication.",
+      year: "2021",
     },
   ];
 
@@ -37,21 +51,33 @@ const About = () => {
       <main className="pt-32 pb-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-12">
               About <span className="text-primary">Me</span>
             </h1>
             
-            <div className="prose prose-invert max-w-none">
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                I'm a passionate developer with over 5 years of experience building web applications. 
-                I love working with modern technologies and creating elegant solutions to complex problems.
-              </p>
+            <div className="grid md:grid-cols-[1fr,300px] gap-12 mb-12">
+              <div className="prose prose-invert max-w-none">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  I'm a passionate developer with over 5 years of experience building web applications. 
+                  I love working with modern technologies and creating elegant solutions to complex problems.
+                </p>
+                
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  When I'm not coding, you can find me contributing to open-source projects, writing technical 
+                  blog posts, or exploring new frameworks and tools. I believe in continuous learning and 
+                  sharing knowledge with the community.
+                </p>
+              </div>
               
-              <p className="text-lg text-muted-foreground leading-relaxed mb-12">
-                When I'm not coding, you can find me contributing to open-source projects, writing technical 
-                blog posts, or exploring new frameworks and tools. I believe in continuous learning and 
-                sharing knowledge with the community.
-              </p>
+              <div className="flex items-start justify-center md:justify-end">
+                <div className="relative w-64 h-64 rounded-2xl overflow-hidden border-2 border-primary/20 shadow-lg">
+                  <img 
+                    src={profileImage} 
+                    alt="Profile" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
 
             {/* What I Do Section */}
@@ -114,7 +140,7 @@ const About = () => {
                       {skillGroup.items.map((skill, idx) => (
                         <span 
                           key={idx}
-                          className="px-3 py-1 bg-primary/10 text-foreground rounded text-sm border border-primary/20"
+                          className={`px-3 py-1 bg-primary/10 ${skillGroup.color} rounded text-sm border border-primary/20`}
                         >
                           {skill}
                         </span>
@@ -125,26 +151,25 @@ const About = () => {
               </div>
             </section>
 
-            {/* Experience Section */}
+            {/* Achievements Section */}
             <section>
               <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-                <Briefcase className="w-8 h-8 text-primary" />
-                Experience
+                <Trophy className="w-8 h-8 text-primary" />
+                Achievements
               </h2>
               
               <div className="space-y-8">
-                {experience.map((job, index) => (
+                {achievements.map((achievement, index) => (
                   <div 
                     key={index}
                     className="border-l-2 border-primary pl-6 pb-8 relative"
                   >
                     <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"></div>
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                      <h3 className="text-xl font-bold">{job.role}</h3>
-                      <span className="text-sm text-muted-foreground">{job.period}</span>
+                      <h3 className="text-xl font-bold">{achievement.title}</h3>
+                      <span className="text-sm text-muted-foreground">{achievement.year}</span>
                     </div>
-                    <p className="text-primary font-semibold mb-2">{job.company}</p>
-                    <p className="text-muted-foreground">{job.description}</p>
+                    <p className="text-muted-foreground">{achievement.description}</p>
                   </div>
                 ))}
               </div>
