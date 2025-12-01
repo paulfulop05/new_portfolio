@@ -72,7 +72,6 @@ const RecentCommits = () => {
 
         return recentCommits;
       } catch (error) {
-        console.error(`Error fetching commits for ${username}:`, error);
         return [];
       }
     };
@@ -92,6 +91,10 @@ const RecentCommits = () => {
     };
 
     fetchAllCommits();
+
+    // Refresh commits every 5 minutes
+    const interval = setInterval(fetchAllCommits, 5 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -112,7 +115,7 @@ const RecentCommits = () => {
       </div>
 
       {/* Commits List */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         {loading ? (
           <div className="space-y-2">
             {[...Array(4)].map((_, i) => (
@@ -124,14 +127,17 @@ const RecentCommits = () => {
           </div>
         ) : (
           <>
-            {/* Main Account Section */}
-            {mainCommits.length > 0 && (
-              <div>
-                <p className="text-xs font-semibold text-foreground mb-2 uppercase tracking-wide">
-                  Main Account
+            {/* Main Account Section - Always visible */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-1 h-3 bg-primary rounded"></div>
+                <p className="text-xs font-semibold text-primary">
+                  Main Account (@{accounts.main})
                 </p>
-                <div className="space-y-2">
-                  {mainCommits.map((commit, index) => (
+              </div>
+              <div className="space-y-2">
+                {mainCommits.length > 0 ? (
+                  mainCommits.map((commit, index) => (
                     <a
                       key={index}
                       href={commit.url}
@@ -156,19 +162,26 @@ const RecentCommits = () => {
                         </span>
                       </div>
                     </a>
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <p className="text-xs text-muted-foreground py-2">
+                    No recent commits
+                  </p>
+                )}
               </div>
-            )}
+            </div>
 
-            {/* Student Account Section */}
-            {studentCommits.length > 0 && (
-              <div>
-                <p className="text-xs font-semibold text-foreground mb-2 uppercase tracking-wide">
-                  Student Account
+            {/* Student Account Section - Always visible */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-1 h-3 bg-primary rounded"></div>
+                <p className="text-xs font-semibold text-primary">
+                  Student Account (@{accounts.student})
                 </p>
-                <div className="space-y-2">
-                  {studentCommits.map((commit, index) => (
+              </div>
+              <div className="space-y-2">
+                {studentCommits.length > 0 ? (
+                  studentCommits.map((commit, index) => (
                     <a
                       key={index}
                       href={commit.url}
@@ -193,16 +206,14 @@ const RecentCommits = () => {
                         </span>
                       </div>
                     </a>
-                  ))}
-                </div>
+                  ))
+                ) : (
+                  <p className="text-xs text-muted-foreground py-2">
+                    No recent commits
+                  </p>
+                )}
               </div>
-            )}
-
-            {mainCommits.length === 0 && studentCommits.length === 0 && (
-              <p className="text-xs text-muted-foreground text-center py-4">
-                No recent commits found
-              </p>
-            )}
+            </div>
           </>
         )}
       </div>
