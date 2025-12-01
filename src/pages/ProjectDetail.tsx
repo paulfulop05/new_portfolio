@@ -4,6 +4,31 @@ import { Github, ExternalLink } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const getTechColor = (tech: string) => {
+  const techLower = tech.toLowerCase();
+  // Languages
+  if (["javascript", "typescript", "python", "java", "c++", "go", "rust"].some(lang => techLower.includes(lang))) {
+    return "text-blue-400";
+  }
+  // Frameworks
+  if (["react", "next.js", "vue.js", "node.js", "express", "django", "flask", "nextjs", "vuejs", "nodejs"].some(fw => techLower.includes(fw))) {
+    return "text-green-400";
+  }
+  // Concepts
+  if (["rest api", "graphql", "websocket", "microservices", "ci/cd", "agile", "api", "rest"].some(concept => techLower.includes(concept))) {
+    return "text-purple-400";
+  }
+  // Tools & Databases
+  if (["git", "docker", "postgresql", "mongodb", "redis", "aws", "kubernetes", "postgres", "mongo"].some(tool => techLower.includes(tool))) {
+    return "text-orange-400";
+  }
+  // Styling & Design
+  if (["tailwind", "css", "sass", "scss", "figma"].some(style => techLower.includes(style))) {
+    return "text-pink-400";
+  }
+  return "text-foreground";
+};
+
 const ProjectDetail = () => {
   const { id } = useParams();
 
@@ -59,7 +84,7 @@ const ProjectDetail = () => {
                 {project.tags.map((tag, index) => (
                   <span 
                     key={index}
-                    className="text-sm px-3 py-1.5 rounded bg-primary/10 text-primary border border-primary/20"
+                    className={`text-sm px-3 py-1.5 rounded bg-primary/10 border border-primary/20 ${getTechColor(tag)}`}
                   >
                     {tag}
                   </span>

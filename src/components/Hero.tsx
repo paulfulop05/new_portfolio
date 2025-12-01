@@ -113,7 +113,7 @@ const Hero = () => {
         {/* Absolute Modal */}
         <div
           className={cn(
-            "absolute z-50 bg-[#1A1D23] rounded-[12px] p-6 w-96 shadow-2xl border border-gray-700 -translate-x-1/2 transition-all duration-200 ease-out",
+            "absolute z-50 bg-[#1A1D23] rounded-[12px] p-4 md:p-6 w-[calc(100vw-2rem)] max-w-96 shadow-2xl border border-gray-700 -translate-x-1/2 transition-all duration-200 ease-out",
             // If top, translate up by 100% to sit above. If bottom, no Y translation needed (starts from calculated top).
             isTop ? "-translate-y-full" : ""
           )}
@@ -215,7 +215,7 @@ const Hero = () => {
               <Github className="w-5 h-5" />
               <span className="text-sm">GitHub</span>
             </a>
-            <span className="text-muted-foreground">|</span>
+            <span className="text-muted-foreground opacity-30">|</span>
             <a
               href="https://linkedin.com"
               target="_blank"
@@ -225,7 +225,7 @@ const Hero = () => {
               <Linkedin className="w-5 h-5" />
               <span className="text-sm">LinkedIn</span>
             </a>
-            <span className="text-muted-foreground">|</span>
+            <span className="text-muted-foreground opacity-30">|</span>
             <a
               href="mailto:hello@example.com"
               className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
@@ -233,7 +233,7 @@ const Hero = () => {
               <Mail className="w-5 h-5" />
               <span className="text-sm">Email</span>
             </a>
-            <span className="text-muted-foreground">|</span>
+            <span className="text-muted-foreground opacity-30">|</span>
             <a
               href="/about"
               className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
@@ -243,38 +243,81 @@ const Hero = () => {
           </div>
         </div>
 
+        {/* Work & Education Section */}
         <div
-          className="mt-16 flex items-center gap-8 opacity-0 animate-fade-in"
-          style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
+          className="mt-20 opacity-0 animate-fade-in"
+          style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
         >
-          <div
-            className="flex items-center gap-3 cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-200"
-            onClick={(e) => handleOrgClick("ubb", e)}
-          >
-            <div className="w-10 h-10 rounded-full bg-transparent flex items-center justify-center overflow-hidden">
-              <img
-                src={ubb_icon}
-                alt="UBB"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <span className="text-sm text-muted-foreground">UBB</span>
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-2xl font-bold">Work & Education</h2>
           </div>
-          <span className="text-muted-foreground">/</span>
-          <div
-            className="flex items-center gap-3 cursor-pointer opacity-60 hover:opacity-100 transition-opacity duration-200"
-            onClick={(e) => handleOrgClick("cnlr", e)}
-          >
-            <div className="w-10 h-10 rounded-full bg-transparent flex items-center justify-center overflow-hidden">
-              <img
-                src={cnlr_icon}
-                alt="CNLR"
-                className="w-full h-full object-cover"
-              />
+          
+          <div className="space-y-8">
+            {/* Current Work */}
+            <div className="flex gap-4 group">
+              <div
+                className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center overflow-hidden flex-shrink-0 cursor-pointer"
+                onClick={(e) => handleOrgClick("ubb", e)}
+              >
+                <img
+                  src={ubb_icon}
+                  alt="UBB"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-start justify-between mb-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">
+                      UBB
+                    </h3>
+                    <p className="text-sm text-primary">{organizations.ubb.role}</p>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    {organizations.ubb.period}
+                  </span>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {organizations.ubb.description}
+                </p>
+              </div>
             </div>
-            <span className="text-sm text-muted-foreground">
-              CNLR <span className="text-xs">(Past)</span>
-            </span>
+
+            <div className="flex items-center gap-3">
+              <div className="h-px bg-border flex-1" />
+              <span className="text-primary text-sm">/</span>
+              <div className="h-px bg-border flex-1" />
+            </div>
+
+            {/* Past Work */}
+            <div className="flex gap-4 group">
+              <div
+                className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center overflow-hidden flex-shrink-0 cursor-pointer"
+                onClick={(e) => handleOrgClick("cnlr", e)}
+              >
+                <img
+                  src={cnlr_icon}
+                  alt="CNLR"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-start justify-between mb-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">
+                      CNLR
+                    </h3>
+                    <p className="text-sm text-primary">{organizations.cnlr.role}</p>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    {organizations.cnlr.period}
+                  </span>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {organizations.cnlr.description}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

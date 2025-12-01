@@ -3,6 +3,30 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+const getTechColor = (tech: string) => {
+  // Languages
+  if (["JavaScript", "TypeScript", "Python", "Java", "C++", "Go", "Rust"].includes(tech)) {
+    return "text-blue-400";
+  }
+  // Frameworks
+  if (["React", "Next.js", "Vue.js", "Node.js", "Express", "Django", "Flask"].includes(tech)) {
+    return "text-green-400";
+  }
+  // Concepts
+  if (["REST API", "GraphQL", "WebSocket", "Microservices", "CI/CD", "Agile"].includes(tech)) {
+    return "text-purple-400";
+  }
+  // Tools & Databases
+  if (["Git", "Docker", "PostgreSQL", "MongoDB", "Redis", "AWS", "Kubernetes"].includes(tech)) {
+    return "text-orange-400";
+  }
+  // Styling & Design
+  if (["Tailwind", "CSS", "SASS", "Figma"].includes(tech)) {
+    return "text-pink-400";
+  }
+  return "text-foreground";
+};
+
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -56,7 +80,7 @@ const ProjectCard = ({ title, description, tags, link, repo, id }: ProjectCardPr
             {tags.map((tag, index) => (
               <span 
                 key={index}
-                className="text-xs px-2 py-1 rounded bg-primary/10 text-primary"
+                className={`text-xs px-2 py-1 rounded bg-primary/10 border border-primary/20 ${getTechColor(tag)}`}
               >
                 {tag}
               </span>
