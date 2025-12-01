@@ -1,4 +1,12 @@
-import { Github, Linkedin, Mail, X, Calendar } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  X,
+  Calendar,
+  Briefcase,
+  GraduationCap,
+} from "lucide-react";
 import ubb_icon from "../assets/UBB.png";
 import cnlr_icon from "../assets/CNLR.png";
 import { cn } from "@/lib/utils";
@@ -268,15 +276,15 @@ const Hero = () => {
           className="mt-20 opacity-0 animate-fade-in"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
         >
-          {/* Tab Toggle */}
-          <div className="flex items-center gap-0 mb-8 border border-border rounded-lg p-1 w-fit bg-card/50">
+          {/* Tab Toggle - Bigger Text with Borders */}
+          <div className="flex items-center gap-8 mb-8 w-fit">
             <button
               onClick={() => setActiveTab("work")}
               className={cn(
-                "px-6 py-2 rounded-md text-sm font-medium transition-all duration-200",
+                "text-lg font-semibold transition-all duration-200 pb-2",
                 activeTab === "work"
-                  ? "bg-primary/10 text-primary border border-primary/20"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-muted-foreground hover:text-foreground border-b-2 border-transparent"
               )}
             >
               Work
@@ -284,57 +292,49 @@ const Hero = () => {
             <button
               onClick={() => setActiveTab("education")}
               className={cn(
-                "px-6 py-2 rounded-md text-sm font-medium transition-all duration-200",
+                "text-lg font-semibold transition-all duration-200 pb-2",
                 activeTab === "education"
-                  ? "bg-primary/10 text-primary border border-primary/20"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-muted-foreground hover:text-foreground border-b-2 border-transparent"
               )}
             >
               Education
             </button>
           </div>
-          
-          <div className="space-y-8">
-            {(activeTab === "work" ? workExperience : education).map((org, index) => (
-              <div key={org.key}>
-                <div className="flex gap-4 group">
-                  <div
-                    className="w-12 h-12 rounded-full bg-transparent flex items-center justify-center overflow-hidden flex-shrink-0 cursor-pointer"
-                    onClick={(e) => handleOrgClick(org.key, e)}
-                  >
-                    <img
-                      src={org.icon}
-                      alt={org.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-start justify-between mb-2">
-                      <div>
-                        <h3 className="text-lg font-semibold text-foreground">
-                          {org.name}
-                        </h3>
-                        <p className="text-sm text-primary">{org.role}</p>
+
+          {/* Organization Badges with Names */}
+          <div className="w-fit mb-8">
+            <div className="flex items-center gap-6">
+              {(activeTab === "work" ? workExperience : education).map(
+                (org, index, array) => (
+                  <div key={org.key} className="flex items-center gap-6">
+                    <div 
+                      className="flex items-center gap-3 cursor-pointer group"
+                      onClick={(e) => handleOrgClick(org.key, e)}
+                    >
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0 group-hover:ring-2 group-hover:ring-primary/50 transition-all">
+                        <img
+                          src={org.icon}
+                          alt={org.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <span className="text-xs text-muted-foreground">
-                        {org.period}
-                      </span>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                          {org.name}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          (Past)
+                        </span>
+                      </div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {org.description}
-                    </p>
+                    {index < array.length - 1 && (
+                      <span className="text-primary text-lg font-bold">/</span>
+                    )}
                   </div>
-                </div>
-                
-                {index < (activeTab === "work" ? workExperience : education).length - 1 && (
-                  <div className="flex items-center gap-3 my-8">
-                    <div className="h-px bg-border flex-1" />
-                    <span className="text-primary text-sm">/</span>
-                    <div className="h-px bg-border flex-1" />
-                  </div>
-                )}
-              </div>
-            ))}
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>
