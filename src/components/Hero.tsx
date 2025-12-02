@@ -15,70 +15,67 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Hero = () => {
   const sectionRef = useRef(null);
-  const activeBadgeRef = useRef(null);
+  const activeBadgeRef = useRef<HTMLElement | null>(null);
   const [activeModal, setActiveModal] = useState(null);
   const [activeTab, setActiveTab] = useState("work");
   const [modalPosition, setModalPosition] = useState({
-    top: 0,
-    left: 0,
-    width: 0,
-    height: 0,
-    placement: "top",
+    // Store document-relative Y position (won't change on scroll)
+    badgeTopAbsolute: 0,
+    badgeBottomAbsolute: 0,
+    centerX: 0,
+    badgeHeight: 0,
+    placement: "top" as "top" | "bottom",
   });
 
   const handleOrgClick = (orgKey, event) => {
-    if (sectionRef.current) {
-      const element = event.currentTarget;
-      activeBadgeRef.current = element;
+    const element = event.currentTarget;
+    activeBadgeRef.current = element;
 
-      const sectionRect = sectionRef.current.getBoundingClientRect();
-      const badgeRect = element.getBoundingClientRect();
+    const badgeRect = element.getBoundingClientRect();
+    const scrollY = window.scrollY;
+
+    const NAVBAR_HEIGHT = 80;
+    const MODAL_HEIGHT_ESTIMATE = 400;
+
+    const spaceAbove = badgeRect.top - NAVBAR_HEIGHT;
+    const placement = spaceAbove < MODAL_HEIGHT_ESTIMATE ? "bottom" : "top";
+
+    setModalPosition({
+      // Store absolute position (document-relative)
+      badgeTopAbsolute: badgeRect.top + scrollY,
+      badgeBottomAbsolute: badgeRect.bottom + scrollY,
+      centerX: badgeRect.left + badgeRect.width / 2,
+      badgeHeight: badgeRect.height,
+      placement: placement,
+    });
+    setActiveModal(orgKey);
+  };
+
+  // Handle placement flip when navbar would overlap modal
+  useEffect(() => {
+    if (!activeModal || !activeBadgeRef.current) return;
+
+    const handleScroll = () => {
+      const badgeRect = activeBadgeRef.current?.getBoundingClientRect();
+      if (!badgeRect) return;
 
       const NAVBAR_HEIGHT = 80;
       const MODAL_HEIGHT_ESTIMATE = 400;
 
       const spaceAbove = badgeRect.top - NAVBAR_HEIGHT;
-      const placement = spaceAbove < MODAL_HEIGHT_ESTIMATE ? "bottom" : "top";
+      const newPlacement =
+        spaceAbove < MODAL_HEIGHT_ESTIMATE ? "bottom" : "top";
 
-      setModalPosition({
-        top: badgeRect.top - sectionRect.top,
-        left: badgeRect.left - sectionRect.left,
-        width: badgeRect.width,
-        height: badgeRect.height,
-        placement: placement,
+      setModalPosition((prev) => {
+        if (prev.placement !== newPlacement) {
+          return { ...prev, placement: newPlacement };
+        }
+        return prev;
       });
-      setActiveModal(orgKey);
-    }
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (activeModal && activeBadgeRef.current) {
-        const badgeRect = activeBadgeRef.current.getBoundingClientRect();
-
-        const NAVBAR_HEIGHT = 80;
-        const MODAL_HEIGHT_ESTIMATE = 400;
-
-        const spaceAbove = badgeRect.top - NAVBAR_HEIGHT;
-        const newPlacement =
-          spaceAbove < MODAL_HEIGHT_ESTIMATE ? "bottom" : "top";
-
-        setModalPosition((prev) => {
-          if (prev.placement !== newPlacement) {
-            return { ...prev, placement: newPlacement };
-          }
-          return prev;
-        });
-      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [activeModal]);
 
   const workExperience = [
@@ -157,7 +154,27 @@ const Hero = () => {
 
   const Modal = ({ org, onClose, position }) => {
     const isTop = position.placement === "top";
-    const verticalOffset = 8;
+    const verticalOffset = 10; // Small gap between badge and arrow
+    const modalRef = useRef<HTMLDivElement>(null);
+    const [modalHeight, setModalHeight] = useState(0);
+
+    // Get actual modal height after render
+    useEffect(() => {
+      if (modalRef.current) {
+        setModalHeight(modalRef.current.offsetHeight);
+      }
+    }, []);
+
+    // Calculate top position based on placement
+    const getTopPosition = () => {
+      if (isTop) {
+        // Position above: badge top - modal height - offset
+        return position.badgeTopAbsolute - modalHeight - verticalOffset;
+      } else {
+        // Position below: badge bottom + offset
+        return position.badgeBottomAbsolute + verticalOffset;
+      }
+    };
 
     return (
       <>
@@ -171,15 +188,12 @@ const Hero = () => {
         />
 
         <motion.div
-          className={cn(
-            "absolute z-50 bg-secondary rounded-[12px] p-4 md:p-6 w-[calc(100vw-2rem)] max-w-96 shadow-2xl border border-border -translate-x-1/2",
-            isTop ? "-translate-y-full" : ""
-          )}
+          ref={modalRef}
+          className="absolute z-50 bg-secondary rounded-[12px] p-4 md:p-6 w-[calc(100vw-2rem)] max-w-96 shadow-2xl border border-border"
           style={{
-            top: isTop
-              ? `${position.top - verticalOffset}px`
-              : `${position.top + position.height + verticalOffset}px`,
-            left: `${position.left + position.width / 2}px`,
+            top: `${getTopPosition()}px`,
+            left: `${position.centerX}px`,
+            x: "-50%",
           }}
           onClick={(e) => e.stopPropagation()}
           initial={{ opacity: 0, scale: 0.9, y: isTop ? 20 : -20 }}
@@ -187,14 +201,15 @@ const Hero = () => {
           exit={{ opacity: 0, scale: 0.9, y: isTop ? 20 : -20 }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
+          {/* Arrow pointing to badge */}
           <div
             className={cn(
-              "absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-secondary border-border transform rotate-45",
+              "absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-secondary border-border rotate-45",
               isTop
                 ? "-bottom-1.5 border-r border-b"
                 : "-top-1.5 border-l border-t"
             )}
-          ></div>
+          />
 
           <motion.button
             onClick={onClose}
@@ -324,13 +339,20 @@ const Hero = () => {
             that make a difference.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex items-center gap-6">
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center gap-6"
+          >
             {socialLinks.map((link, index) => (
               <motion.a
                 key={link.label}
                 href={link.href}
                 target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                rel={
+                  link.href.startsWith("mailto")
+                    ? undefined
+                    : "noopener noreferrer"
+                }
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
