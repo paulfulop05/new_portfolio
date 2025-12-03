@@ -25,37 +25,21 @@ const About = () => {
       category: "Languages",
       items: ["JavaScript", "TypeScript", "Python", "Java", "C++"],
       icon: Code2,
-      gradient: "from-blue-500/20 to-cyan-500/20",
-      color: "text-blue-400",
-      borderColor: "border-blue-500/30",
-      bgColor: "bg-blue-500/10",
     },
     {
       category: "Frameworks",
       items: ["React", "Next.js", "Vue.js", "Node.js", "Express"],
       icon: Zap,
-      gradient: "from-green-500/20 to-emerald-500/20",
-      color: "text-green-400",
-      borderColor: "border-green-500/30",
-      bgColor: "bg-green-500/10",
     },
     {
       category: "Concepts",
       items: ["REST APIs", "GraphQL", "Microservices", "CI/CD", "Agile"],
       icon: Lightbulb,
-      gradient: "from-purple-500/20 to-violet-500/20",
-      color: "text-purple-400",
-      borderColor: "border-purple-500/30",
-      bgColor: "bg-purple-500/10",
     },
     {
       category: "Tools",
       items: ["Git", "Docker", "VS Code", "Figma", "Postman"],
       icon: Wrench,
-      gradient: "from-orange-500/20 to-amber-500/20",
-      color: "text-orange-400",
-      borderColor: "border-orange-500/30",
-      bgColor: "bg-orange-500/10",
     },
   ];
 
@@ -85,25 +69,16 @@ const About = () => {
       title: "UI/UX Design",
       description: "Creating beautiful, intuitive interfaces that users love to interact with.",
       icon: Palette,
-      gradient: "from-pink-500/30 via-rose-500/20 to-transparent",
-      iconColor: "text-pink-400",
-      iconBg: "bg-pink-500/20",
     },
     {
       title: "Database Design",
       description: "Architecting scalable database solutions for high-performance applications.",
       icon: Database,
-      gradient: "from-cyan-500/30 via-blue-500/20 to-transparent",
-      iconColor: "text-cyan-400",
-      iconBg: "bg-cyan-500/20",
     },
     {
       title: "Performance",
       description: "Optimizing applications for speed, efficiency, and better user experience.",
       icon: Zap,
-      gradient: "from-amber-500/30 via-orange-500/20 to-transparent",
-      iconColor: "text-amber-400",
-      iconBg: "bg-amber-500/20",
     },
   ];
 
@@ -180,25 +155,25 @@ const About = () => {
                 What I Do
               </h2>
 
-              <div className="relative h-[380px] md:h-[350px]">
+              <div className="relative h-[380px] md:h-[350px] flex items-center justify-center">
                 <CardSwap
-                  width={300}
-                  height={200}
-                  cardDistance={45}
-                  verticalDistance={40}
+                  width={380}
+                  height={220}
+                  cardDistance={50}
+                  verticalDistance={45}
                   delay={4000}
                   pauseOnHover={true}
-                  skewAmount={5}
+                  skewAmount={4}
                   easing="elastic"
                 >
                   {cardData.map((card, index) => {
                     const Icon = card.icon;
                     return (
                       <Card key={index}>
-                        <div className={`h-full w-full rounded-xl bg-gradient-to-br ${card.gradient} border border-border/40 backdrop-blur-sm overflow-hidden`}>
-                          <div className="p-5 h-full flex flex-col">
-                            <div className={`w-11 h-11 rounded-lg ${card.iconBg} flex items-center justify-center mb-4`}>
-                              <Icon className={`w-5 h-5 ${card.iconColor}`} />
+                        <div className="h-full w-full rounded-xl bg-secondary border border-border overflow-hidden">
+                          <div className="p-6 h-full flex flex-col">
+                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                              <Icon className="w-5 h-5 text-primary" />
                             </div>
                             <h3 className="text-lg font-bold mb-2 text-foreground">{card.title}</h3>
                             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -225,7 +200,7 @@ const About = () => {
                 Skills & Technologies
               </motion.h2>
 
-              <div className="grid md:grid-cols-2 gap-5">
+              <div className="grid md:grid-cols-2 gap-4">
                 {skills.map((skillGroup, index) => {
                   const Icon = skillGroup.icon;
                   return (
@@ -235,28 +210,24 @@ const About = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      className={`group relative p-5 rounded-xl bg-gradient-to-br ${skillGroup.gradient} border ${skillGroup.borderColor} hover:border-opacity-60 transition-all duration-300`}
+                      className="p-5 rounded-xl bg-secondary border border-border hover:border-primary/30 transition-all duration-300"
                     >
                       <div className="flex items-center gap-3 mb-4">
-                        <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${skillGroup.bgColor}`}>
-                          <Icon className={`w-4 h-4 ${skillGroup.color}`} />
+                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Icon className="w-4 h-4 text-primary" />
                         </div>
-                        <h3 className={`text-base font-bold ${skillGroup.color}`}>
+                        <h3 className="text-base font-bold text-primary">
                           {skillGroup.category}
                         </h3>
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {skillGroup.items.map((skill, idx) => (
-                          <motion.span
+                          <span
                             key={idx}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 + idx * 0.03 }}
-                            className={`px-2.5 py-1 rounded-md text-xs font-medium border ${skillGroup.borderColor} ${skillGroup.bgColor} ${skillGroup.color}`}
+                            className="px-2.5 py-1 rounded-md text-xs font-medium border border-border bg-background text-muted-foreground"
                           >
                             {skill}
-                          </motion.span>
+                          </span>
                         ))}
                       </div>
                     </motion.div>
@@ -306,16 +277,16 @@ const About = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="min-w-[300px] max-w-[300px] snap-start"
+                    className="min-w-[280px] max-w-[280px] snap-start"
                   >
-                    <div className="h-full p-6 rounded-xl bg-gradient-to-br from-primary/10 via-secondary/50 to-transparent border border-border/40 hover:border-primary/30 transition-all duration-300">
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="w-2 h-2 rounded-full bg-primary" />
-                        <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+                    <div className="h-full p-5 rounded-xl bg-secondary border border-border hover:border-primary/30 transition-all duration-300">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        <span className="text-xs text-muted-foreground font-medium">
                           {achievement.year}
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold mb-3 text-foreground">
+                      <h3 className="text-base font-bold mb-2 text-foreground">
                         {achievement.title}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
