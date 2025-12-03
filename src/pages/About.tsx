@@ -11,6 +11,7 @@ import {
 import profileImage from "../assets/avatar.jpg";
 import profileImageGlasses from "../assets/avatar_with_glasses.jpg";
 import PixelTransition from "@/components/ui/pixel_transition";
+import CardSwap, { Card } from "@/components/ui/card-swap";
 
 const About = () => {
   const skills = [
@@ -116,46 +117,48 @@ const About = () => {
                 What I Do
               </h2>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
-                  <Code2 className="w-8 h-8 text-primary mb-4" />
-                  <h3 className="text-xl font-bold mb-3">
-                    Full Stack Development
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Building end-to-end web applications with modern frameworks
-                    and best practices.
-                  </p>
-                </div>
-
-                <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
-                  <Palette className="w-8 h-8 text-primary mb-4" />
-                  <h3 className="text-xl font-bold mb-3">UI/UX Design</h3>
-                  <p className="text-muted-foreground">
-                    Creating beautiful, intuitive interfaces that users love to
-                    interact with.
-                  </p>
-                </div>
-
-                <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
-                  <Database className="w-8 h-8 text-primary mb-4" />
-                  <h3 className="text-xl font-bold mb-3">Database Design</h3>
-                  <p className="text-muted-foreground">
-                    Architecting scalable database solutions for
-                    high-performance applications.
-                  </p>
-                </div>
-
-                <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
-                  <Zap className="w-8 h-8 text-primary mb-4" />
-                  <h3 className="text-xl font-bold mb-3">
-                    Performance Optimization
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Optimizing applications for speed, efficiency, and better
-                    user experience.
-                  </p>
-                </div>
+              <div style={{ height: "600px", position: "relative" }}>
+                <CardSwap
+                  cardDistance={60}
+                  verticalDistance={70}
+                  delay={3000}
+                  pauseOnHover={true}
+                >
+                  <Card>
+                    <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
+                      <Palette className="w-8 h-8 text-primary mb-4" />
+                      <h3 className="text-xl font-bold mb-3">UI/UX Design</h3>
+                      <p className="text-muted-foreground">
+                        Creating beautiful, intuitive interfaces that users love
+                        to interact with.
+                      </p>
+                    </div>
+                  </Card>
+                  <Card>
+                    <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
+                      <Database className="w-8 h-8 text-primary mb-4" />
+                      <h3 className="text-xl font-bold mb-3">
+                        Database Design
+                      </h3>
+                      <p className="text-muted-foreground">
+                        Architecting scalable database solutions for
+                        high-performance applications.
+                      </p>
+                    </div>
+                  </Card>
+                  <Card>
+                    <div className="p-6 bg-card border border-border rounded-lg hover:border-primary transition-colors">
+                      <Zap className="w-8 h-8 text-primary mb-4" />
+                      <h3 className="text-xl font-bold mb-3">
+                        Performance Optimization
+                      </h3>
+                      <p className="text-muted-foreground">
+                        Optimizing applications for speed, efficiency, and
+                        better user experience.
+                      </p>
+                    </div>
+                  </Card>
+                </CardSwap>
               </div>
             </section>
 
