@@ -32,6 +32,7 @@ const ProjectCard = ({
       className="block group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => window.scrollTo(0, 0)}
     >
       <motion.div
         whileHover={{ y: -8, scale: 1.02 }}
