@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import ProjectDetail from "./pages/ProjectDetail";
+import CV from "./pages/CV";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -81,6 +82,19 @@ const AnimatedRoutes = () => {
               transition={{ duration: 0.2 }}
             >
               <Contact />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/cv"
+          element={
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <CV />
             </motion.div>
           }
         />

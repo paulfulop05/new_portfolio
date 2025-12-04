@@ -32,6 +32,11 @@ const Navigation = () => {
         { text: "~/", link: "/" },
         { text: "contact/", link: "/contact" },
       ];
+    if (path === "/cv")
+      return [
+        { text: "~/", link: "/" },
+        { text: "cv/", link: "/cv" },
+      ];
 
     return [{ text: "~/", link: "/" }];
   };

@@ -6,6 +6,7 @@ import {
   Calendar,
   Briefcase,
   GraduationCap,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
@@ -294,6 +295,19 @@ const Hero = () => {
             variants={itemVariants}
             className="flex items-center gap-6"
           >
+            <motion.a
+              href="/cv"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <FileText className="w-4 h-4" />
+              <span>CV</span>
+            </motion.a>
+            <span className="text-muted-foreground opacity-30">|</span>
             {socialLinks.map((link, index) => (
               <motion.a
                 key={link.label}
@@ -309,7 +323,7 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + index * 0.1 }}
+                transition={{ delay: 0.6 + index * 0.1 }}
               >
                 <link.icon className="w-5 h-5" />
                 <span className="text-sm">{link.label}</span>
@@ -322,7 +336,7 @@ const Hero = () => {
               whileHover={{ x: 5 }}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.9 }}
             >
               <span className="text-sm">More about me →</span>
             </motion.a>
