@@ -1,24 +1,24 @@
 import { motion } from "framer-motion";
-import { getTechColorClasses, techColorClasses, TechColorVariant } from "@/lib/techColors";
+import { getTechColorClasses, TechType } from "@/lib/techColors";
 import { cn } from "@/lib/utils";
 
 interface TechBadgeProps {
   tech: string;
-  color?: TechColorVariant;
+  type?: TechType;
   index?: number;
   animated?: boolean;
   className?: string;
 }
 
-const TechBadge = ({ 
-  tech, 
-  color, 
-  index = 0, 
+const TechBadge = ({
+  tech,
+  type,
+  index = 0,
   animated = true,
-  className 
+  className,
 }: TechBadgeProps) => {
-  const colorClasses = color ? techColorClasses[color] : getTechColorClasses(tech);
-  
+  const colorClasses = getTechColorClasses(tech, type);
+
   if (animated) {
     return (
       <motion.span

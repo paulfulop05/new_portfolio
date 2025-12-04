@@ -35,7 +35,8 @@ const About = () => {
         "Software frameworks and libraries that provide structure, reusable components, and tools to build applications efficiently.",
       items: ["Qt", "React", "Tailwind CSS", ".NET"],
       icon: Zap,
-      color: "bg-red-500/20 text-red-400 border-red-500/30",
+      color:
+        "bg-[hsl(var(--tech-framework-bg))] text-[hsl(var(--tech-framework-text))] border-[hsl(var(--tech-framework-border))]",
     },
     {
       category: "Tools",
@@ -43,7 +44,8 @@ const About = () => {
         "Software and utilities that help build, test, and manage applications efficiently.",
       items: ["SQL Server", "GitHub", "Git", "Vite"],
       icon: Wrench,
-      color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+      color:
+        "bg-[hsl(var(--tech-tool-bg))] text-[hsl(var(--tech-tool-text))] border-[hsl(var(--tech-tool-border))]",
     },
     {
       category: "Concepts",
@@ -56,7 +58,8 @@ const About = () => {
         "Software Engineering Principles",
       ],
       icon: Lightbulb,
-      color: "bg-background text-foreground border-border",
+      color:
+        "bg-[hsl(var(--tech-concept-bg))] text-[hsl(var(--tech-concept-text))] border-[hsl(var(--tech-concept-border))]",
     },
   ];
 
@@ -252,7 +255,7 @@ const About = () => {
                         {languageSkills.proficient.items.map((skill, idx) => (
                           <span
                             key={idx}
-                            className="px-2.5 py-1 rounded-md text-xs font-medium border bg-amber-500/20 text-amber-400 border-amber-500/30"
+                            className="px-2.5 py-1 rounded-md text-xs font-medium border bg-[hsl(var(--tech-language-bg))] text-[hsl(var(--tech-language-text))] border-[hsl(var(--tech-language-border))]"
                           >
                             {skill}
                           </span>
@@ -272,7 +275,7 @@ const About = () => {
                         {languageSkills.familiar.items.map((skill, idx) => (
                           <span
                             key={idx}
-                            className="px-2.5 py-1 rounded-md text-xs font-medium border bg-amber-500/20 text-amber-400 border-amber-500/30"
+                            className="px-2.5 py-1 rounded-md text-xs font-medium border bg-[hsl(var(--tech-language-bg))] text-[hsl(var(--tech-language-text))] border-[hsl(var(--tech-language-border))]"
                           >
                             {skill}
                           </span>

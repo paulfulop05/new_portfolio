@@ -1,59 +1,104 @@
-export type TechColorVariant = "yellow" | "cyan" | "purple" | "orange" | "pink" | "default";
+export type TechType = "language" | "framework" | "tool" | "concept";
 
-export const techColorClasses: Record<TechColorVariant, string> = {
-  yellow: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-  cyan: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
-  purple: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-  orange: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-  pink: "bg-pink-500/20 text-pink-400 border-pink-500/30",
-  default: "bg-primary/10 text-foreground border-primary/20",
+// Color classes matching the About page section colors
+export const techTypeColors: Record<TechType, string> = {
+  language:
+    "bg-[hsl(var(--tech-language-bg))] text-[hsl(var(--tech-language-text))] border-[hsl(var(--tech-language-border))]",
+  framework:
+    "bg-[hsl(var(--tech-framework-bg))] text-[hsl(var(--tech-framework-text))] border-[hsl(var(--tech-framework-border))]",
+  tool: "bg-[hsl(var(--tech-tool-bg))] text-[hsl(var(--tech-tool-text))] border-[hsl(var(--tech-tool-border))]",
+  concept:
+    "bg-[hsl(var(--tech-concept-bg))] text-[hsl(var(--tech-concept-text))] border-[hsl(var(--tech-concept-border))]",
 };
 
-const languageKeywords = [
-  "javascript", "typescript", "python", "java", "c++", "go", "rust", "golang"
+// Languages from About page
+const languages = [
+  "c",
+  "c++",
+  "c#",
+  "python",
+  "java",
+  "lua",
+  "javascript",
+  "typescript",
+  "assemblyscript",
+  "golang",
+  "go",
+  "rust",
+  "ruby",
+  "php",
+  "swift",
+  "kotlin",
 ];
 
-const frameworkKeywords = [
-  "react", "next.js", "vue.js", "node.js", "express", "django", "flask",
-  "nextjs", "vuejs", "nodejs", "apollo", "celery"
+// Frameworks from About page
+const frameworks = [
+  "qt",
+  "react",
+  "tailwind",
+  "tailwind css",
+  ".net",
+  "dotnet",
+  "next.js",
+  "nextjs",
+  "vue",
+  "vue.js",
+  "vuejs",
+  "node.js",
+  "nodejs",
+  "express",
+  "django",
+  "flask",
+  "angular",
+  "svelte",
+  "spring",
+  "laravel",
 ];
 
-const conceptKeywords = [
-  "rest api", "graphql", "websocket", "microservices", "ci/cd", "agile",
-  "api", "rest", "security", "anti-bot", "proof-of-work", "rate-limiting",
-  "middleware", "monitoring", "encryption", "distributed", "caching",
-  "migrations", "cli"
+// Tools from About page
+const tools = [
+  "sql server",
+  "github",
+  "git",
+  "vite",
+  "docker",
+  "postgresql",
+  "postgres",
+  "mongodb",
+  "mongo",
+  "redis",
+  "aws",
+  "kubernetes",
+  "elasticsearch",
+  "kafka",
+  "rabbitmq",
+  "prometheus",
+  "grafana",
+  "figma",
+  "vs code",
+  "vscode",
 ];
 
-const toolKeywords = [
-  "git", "docker", "postgresql", "mongodb", "redis", "aws", "kubernetes",
-  "postgres", "mongo", "elasticsearch", "kafka", "rabbitmq", "prometheus",
-  "grafana", "database"
-];
-
-const stylingKeywords = ["tailwind", "css", "sass", "scss", "figma"];
-
-export const getTechColorVariant = (tech: string): TechColorVariant => {
+// Auto-detect tech type based on name
+export const getTechType = (tech: string): TechType => {
   const techLower = tech.toLowerCase();
-  
-  if (languageKeywords.some((lang) => techLower.includes(lang))) {
-    return "yellow";
+
+  if (
+    languages.some((lang) => techLower === lang || techLower.includes(lang))
+  ) {
+    return "language";
   }
-  if (frameworkKeywords.some((fw) => techLower.includes(fw))) {
-    return "cyan";
+  if (frameworks.some((fw) => techLower === fw || techLower.includes(fw))) {
+    return "framework";
   }
-  if (conceptKeywords.some((concept) => techLower.includes(concept))) {
-    return "purple";
+  if (tools.some((tool) => techLower === tool || techLower.includes(tool))) {
+    return "tool";
   }
-  if (toolKeywords.some((tool) => techLower.includes(tool))) {
-    return "orange";
-  }
-  if (stylingKeywords.some((style) => techLower.includes(style))) {
-    return "pink";
-  }
-  return "default";
+  // Default to concept (same as About page default)
+  return "concept";
 };
 
-export const getTechColorClasses = (tech: string): string => {
-  return techColorClasses[getTechColorVariant(tech)];
+export const getTechColorClasses = (tech: string, type?: TechType): string => {
+  const techType = type || getTechType(tech);
+  return techTypeColors[techType];
 };

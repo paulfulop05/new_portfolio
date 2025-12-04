@@ -55,6 +55,23 @@ All colors MUST be HSL.
     --sidebar-border: 220 10% 25%;
 
     --sidebar-ring: 217 92% 76%;
+
+    /* Tech Badge Category Colors */
+    --tech-language-bg: 45 93% 47% / 0.2;
+    --tech-language-text: 45 93% 58%;
+    --tech-language-border: 45 93% 47% / 0.3;
+
+    --tech-framework-bg: 0 84% 60% / 0.2;
+    --tech-framework-text: 0 84% 65%;
+    --tech-framework-border: 0 84% 60% / 0.3;
+
+    --tech-tool-bg: 217 92% 60% / 0.2;
+    --tech-tool-text: 217 92% 70%;
+    --tech-tool-border: 217 92% 60% / 0.3;
+
+    --tech-concept-bg: 220 10% 11%;
+    --tech-concept-text: 220 10% 88%;
+    --tech-concept-border: 220 10% 25%;
   }
 
   .dark {
