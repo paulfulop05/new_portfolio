@@ -1,110 +1,15 @@
 import Navigation from "@/components/Navigation";
-import {
-  Code2,
-  Database,
-  Palette,
-  Zap,
-  Lightbulb,
-  Wrench,
-  Trophy,
-} from "lucide-react";
+import { Code2, Trophy, Lightbulb, Wrench } from "lucide-react";
 import profileImage from "../assets/avatar.jpg";
 import profileImageGlasses from "../assets/avatar_with_glasses.jpg";
 import PixelTransition from "@/components/ui/pixel_transition";
 import CardSwap, { Card } from "@/components/ui/card-swap";
 import { motion } from "framer-motion";
+import { languageSkills, skills } from "@/data/skills";
+import { achievements } from "@/data/achievements";
+import { whatIDoCards } from "@/data/profile";
 
 const About = () => {
-  const languageSkills = {
-    proficient: {
-      description:
-        "I have used these programming languages in various projects throughout my journey.",
-      items: ["C", "C++", "C#", "Python", "Java"],
-    },
-    familiar: {
-      description:
-        "I have worked with these programming languages at least once in my life, but I don't have as much experience.",
-      items: ["Lua", "JavaScript", "TypeScript", "AssemblyScript"],
-    },
-  };
-
-  const skills = [
-    {
-      category: "Frameworks",
-      description:
-        "Software frameworks and libraries that provide structure, reusable components, and tools to build applications efficiently.",
-      items: ["Qt", "React", "Tailwind CSS", ".NET"],
-      icon: Zap,
-      color:
-        "bg-[hsl(var(--tech-framework-bg))] text-[hsl(var(--tech-framework-text))] border-[hsl(var(--tech-framework-border))]",
-    },
-    {
-      category: "Tools",
-      description:
-        "Software and utilities that help build, test, and manage applications efficiently.",
-      items: ["SQL Server", "GitHub", "Git", "Vite"],
-      icon: Wrench,
-      color:
-        "bg-[hsl(var(--tech-tool-bg))] text-[hsl(var(--tech-tool-text))] border-[hsl(var(--tech-tool-border))]",
-    },
-    {
-      category: "Concepts",
-      description:
-        "Core principles and techniques that guide writing efficient, organized, and maintainable code.",
-      items: [
-        "Object-Oriented Programming",
-        "Data Structures",
-        "Algorithms",
-        "Software Engineering Principles",
-      ],
-      icon: Lightbulb,
-      color:
-        "bg-[hsl(var(--tech-concept-bg))] text-[hsl(var(--tech-concept-text))] border-[hsl(var(--tech-concept-border))]",
-    },
-  ];
-
-  const achievements = [
-    {
-      title: "Open Source Contributor",
-      description:
-        "Active contributor to popular open-source projects with over 1000+ stars combined.",
-      year: "2023",
-    },
-    {
-      title: "Hackathon Winner",
-      description:
-        "First place at National Tech Hackathon for innovative AI-powered solution.",
-      year: "2022",
-    },
-    {
-      title: "Published Article",
-      description:
-        "Technical article on distributed systems published in major tech publication.",
-      year: "2021",
-    },
-  ];
-
-  const cardData = [
-    {
-      title: "UI/UX Design",
-      description:
-        "Creating beautiful, intuitive interfaces that users love to interact with.",
-      icon: Palette,
-    },
-    {
-      title: "Database Design",
-      description:
-        "Architecting scalable database solutions for high-performance applications.",
-      icon: Database,
-    },
-    {
-      title: "Performance",
-      description:
-        "Optimizing applications for speed, efficiency, and better user experience.",
-      icon: Zap,
-    },
-  ];
-
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -184,7 +89,7 @@ const About = () => {
                   skewAmount={4}
                   easing="elastic"
                 >
-                  {cardData.map((card, index) => {
+                  {whatIDoCards.map((card, index) => {
                     const Icon = card.icon;
                     return (
                       <Card key={index}>

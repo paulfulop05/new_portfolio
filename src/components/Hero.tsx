@@ -7,11 +7,11 @@ import {
   Briefcase,
   GraduationCap,
 } from "lucide-react";
-import ubb_icon from "../assets/UBB.png";
-import cnlr_icon from "../assets/CNLR.png";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { workExperience, education, getOrganizations } from "@/data/experience";
+import { socialLinks } from "@/data/profile";
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -26,6 +26,8 @@ const Hero = () => {
     badgeHeight: 0,
     placement: "top" as "top" | "bottom",
   });
+
+  const organizations = getOrganizations();
 
   const handleOrgClick = (orgKey, event) => {
     const element = event.currentTarget;
@@ -77,57 +79,6 @@ const Hero = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeModal]);
-
-  const workExperience = [
-    {
-      key: "ubb",
-      name: "UBB",
-      role: "CTO",
-      description:
-        "As CTO, I led the development of StorageBox, an innovative startup revolutionizing eco-friendly Shopify fulfillment with edge based sustainable warehousing technology and seamless logistics integrations.",
-      period: "September 2024 - June 2025",
-      website: "https://www.cs.ubbcluj.ro/",
-      icon: ubb_icon,
-      isPast: false,
-    },
-    {
-      key: "cnlr",
-      name: "CNLR",
-      role: "Software Engineer",
-      description:
-        "Worked on cutting-edge projects involving distributed systems and cloud infrastructure, contributing to solutions that served millions of users worldwide.",
-      period: "January 2023 - August 2024",
-      website: "https://www.cnlr.ro/",
-      icon: cnlr_icon,
-      isPast: true,
-    },
-  ];
-
-  const education = [
-    {
-      key: "ubb-edu",
-      name: "UBB",
-      role: "Bachelor's in Computer Science",
-      description:
-        "Focused on software engineering, algorithms, and distributed systems. Graduated with honors and completed multiple research projects in AI and machine learning.",
-      period: "September 2020 - June 2024",
-      website: "https://www.cs.ubbcluj.ro/",
-      icon: ubb_icon,
-      isPast: true,
-    },
-  ];
-
-  const organizations = {
-    ubb: workExperience[0],
-    cnlr: workExperience[1],
-    "ubb-edu": education[0],
-  };
-
-  const socialLinks = [
-    { href: "https://github.com", icon: Github, label: "GitHub" },
-    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
-    { href: "mailto:hello@example.com", icon: Mail, label: "Email" },
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
