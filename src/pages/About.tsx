@@ -14,18 +14,26 @@ import { useState, useEffect } from "react";
 const About = () => {
   const isMobile = useIsMobile();
   const [cardWidth, setCardWidth] = useState(750);
+  const [cardDistance, setCardDistance] = useState(50);
 
   useEffect(() => {
     const updateWidth = () => {
       const viewportWidth = window.innerWidth;
-      if (viewportWidth < 480) {
-        setCardWidth(viewportWidth - 60);
+      if (viewportWidth < 400) {
+        setCardWidth(viewportWidth - 100);
+        setCardDistance(25);
+      } else if (viewportWidth < 480) {
+        setCardWidth(viewportWidth - 120);
+        setCardDistance(30);
       } else if (viewportWidth < 640) {
-        setCardWidth(viewportWidth - 80);
+        setCardWidth(viewportWidth - 140);
+        setCardDistance(35);
       } else if (viewportWidth < 768) {
-        setCardWidth(Math.min(550, viewportWidth - 80));
+        setCardWidth(Math.min(500, viewportWidth - 150));
+        setCardDistance(40);
       } else {
         setCardWidth(750);
+        setCardDistance(50);
       }
     };
 
@@ -102,12 +110,12 @@ const About = () => {
                 What I Do
               </h2>
 
-              <div className="relative h-[280px] sm:h-[320px] mt-8 sm:mt-16">
+              <div className="relative h-[280px] sm:h-[320px] mt-8 sm:mt-16 overflow-hidden">
                 <CardSwap
                   width={cardWidth}
-                  height={isMobile ? 180 : 200}
-                  cardDistance={50}
-                  verticalDistance={35}
+                  height={isMobile ? 160 : 200}
+                  cardDistance={cardDistance}
+                  verticalDistance={isMobile ? 25 : 35}
                   delay={4000}
                   pauseOnHover={false}
                   skewAmount={4}
