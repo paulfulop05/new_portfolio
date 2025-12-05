@@ -132,7 +132,7 @@ const About = () => {
                 What I Do
               </h2>
 
-              <div className="relative h-[320px] sm:h-[350px] mt-8 sm:mt-16 overflow-hidden">
+              <div className="relative h-[420px] sm:h-[450px] mt-8 sm:mt-16">
                 <CardSwap
                   width={cardWidth}
                   height={cardHeight}
