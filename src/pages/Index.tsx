@@ -25,9 +25,9 @@ const Index = () => {
               <RecentCommits />
             </div>
 
-            {/* Current Location Card - 1/3 width (square) */}
+            {/* Current Location Card - 1/3 width */}
             <div
-              className="w-full md:flex-[1] opacity-0 animate-fade-in aspect-square md:h-72"
+              className="w-full md:flex-[1] opacity-0 animate-fade-in md:h-72"
               style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
             >
               <CurrentLocation />

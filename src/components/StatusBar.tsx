@@ -19,9 +19,9 @@ const StatusBar = () => {
       viewport={{ once: true, amount: 0.5 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-2 flex items-center justify-between text-xs">
-        {/* Left side - Status */}
-        <div className="flex items-center gap-4">
+      <div className="max-w-5xl mx-auto px-6 py-3 sm:py-2 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-xs">
+        {/* Top row on mobile / Left side on desktop - Status & Contact */}
+        <div className="flex items-center justify-between w-full sm:w-auto gap-4">
           <motion.div
             className="flex items-center gap-1.5"
             initial={{ opacity: 0 }}
@@ -38,6 +38,19 @@ const StatusBar = () => {
             </motion.div>
             <span className="text-muted-foreground">{availabilityText}</span>
           </motion.div>
+
+          {/* Contact - visible on mobile in top row */}
+          <motion.a
+            href={`mailto:${contactEmail}`}
+            className="flex sm:hidden items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            whileHover={{ x: 2, transition: { duration: 0.15 } }}
+          >
+            <Mail className="w-3 h-3" />
+            <span>Contact</span>
+          </motion.a>
         </div>
 
         {/* Center - Currently Working On (Spotify-style) */}
@@ -54,6 +67,7 @@ const StatusBar = () => {
             <Code2 className="w-3.5 h-3.5 text-primary" />
           </motion.div>
           <span className="hidden sm:inline">Currently building</span>
+          <span className="sm:hidden">Building</span>
           <span className="font-medium text-foreground">
             {currentProject.title}
           </span>
@@ -63,18 +77,17 @@ const StatusBar = () => {
           </span>
         </motion.div>
 
-        {/* Right side - CTA */}
+        {/* Right side - CTA (hidden on mobile, shown in top row instead) */}
         <motion.a
           href={`mailto:${contactEmail}`}
-          className="flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
+          className="hidden sm:flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
           whileHover={{ x: 2, transition: { duration: 0.15 } }}
         >
           <Mail className="w-3 h-3" />
-          <span className="hidden sm:inline">Get in touch</span>
-          <span className="sm:hidden">Contact</span>
+          <span>Get in touch</span>
         </motion.a>
       </div>
     </motion.div>

@@ -42,7 +42,7 @@ const CurrentLocation = () => {
 
   return (
     <motion.div
-      className="border border-border rounded-lg bg-card/50 p-4 h-full"
+      className="border border-border rounded-lg bg-card/50 p-4 h-full flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -54,7 +54,7 @@ const CurrentLocation = () => {
       </h3>
 
       {/* Map Container with Dark Theme */}
-      <div className="relative w-full h-48 mb-3 rounded-lg overflow-hidden bg-[#2a2d35]">
+      <div className="relative w-full flex-1 min-h-[150px] mb-3 rounded-lg overflow-hidden bg-[#2a2d35]">
         {isLoading ? (
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
