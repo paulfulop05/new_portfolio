@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Database, Palette, Zap } from "lucide-react";
+import { Github, Linkedin, Mail, Code, Brain, Rocket } from "lucide-react";
 
 export interface SocialLink {
   href: string;
@@ -9,7 +9,7 @@ export interface SocialLink {
 export interface WhatIDoCard {
   title: string;
   description: string;
-  icon: typeof Palette;
+  icon: typeof Code;
 }
 
 export const socialLinks: SocialLink[] = [
@@ -39,21 +39,21 @@ export const getLinkedinUsername = () => {
 
 export const whatIDoCards: WhatIDoCard[] = [
   {
-    title: "UI/UX Design",
+    title: "Full-Stack Development",
     description:
-      "Creating beautiful, intuitive interfaces that users love to interact with.",
-    icon: Palette,
+      "Building web applications from frontend to backend, turning ideas into working products.",
+    icon: Code,
   },
   {
-    title: "Database Design",
+    title: "Problem Solving",
     description:
-      "Architecting scalable database solutions for high-performance applications.",
-    icon: Database,
+      "Tackling algorithmic challenges and developing efficient solutions through logical thinking.",
+    icon: Brain,
   },
   {
-    title: "Performance",
+    title: "Learning & Building",
     description:
-      "Optimizing applications for speed, efficiency, and better user experience.",
-    icon: Zap,
+      "Constantly exploring new technologies and applying them through personal projects.",
+    icon: Rocket,
   },
 ];
