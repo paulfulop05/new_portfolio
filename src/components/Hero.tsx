@@ -508,13 +508,9 @@ const Hero = () => {
                         </div>
                       </motion.div>
                       {index < array.length - 1 && (
-                        <motion.span
-                          className="text-primary text-lg font-bold hidden md:inline"
-                          animate={{ opacity: [0.5, 1, 0.5] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        >
+                        <span className="text-primary text-lg font-bold hidden md:inline">
                           /
-                        </motion.span>
+                        </span>
                       )}
                     </motion.div>
                   )

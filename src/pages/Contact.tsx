@@ -144,7 +144,7 @@ const Contact = () => {
                         >
                           available
                         </motion.span>{" "}
-                        for freelance projects and consulting opportunities.
+                        for work and new projects.
                       </p>
                     </motion.div>
                   </motion.div>
