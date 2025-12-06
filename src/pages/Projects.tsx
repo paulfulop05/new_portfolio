@@ -6,7 +6,7 @@ const Projects = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      
+
       <main className="pt-32 pb-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="animate-fade-in mb-12">
@@ -14,19 +14,20 @@ const Projects = () => {
               My <span className="text-primary">Projects</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl">
-              A collection of projects I've built over the years. From full-stack applications 
-              to open-source libraries, each project represents a unique challenge and learning opportunity.
+              Here is some of my technical work. I use these projects to explore
+              different challenges and demonstrate my approach to software
+              development.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project, index) => (
-              <div 
+              <div
                 key={project.id}
                 className="opacity-0 animate-fade-in"
-                style={{ 
+                style={{
                   animationDelay: `${0.05 * index}s`,
-                  animationFillMode: "forwards"
+                  animationFillMode: "forwards",
                 }}
               >
                 <ProjectCard {...project} />

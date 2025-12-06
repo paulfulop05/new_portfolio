@@ -298,7 +298,7 @@ const Hero = () => {
               className="text-primary inline-block"
               whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
             >
-              Your Name
+              Paul Fülöp
             </motion.span>
           </motion.h1>
 
@@ -306,8 +306,8 @@ const Hero = () => {
             variants={itemVariants}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mb-4 leading-relaxed"
           >
-            I'm a developer who loves building things that live on the internet.
-            I specialize in creating{" "}
+            I'm a 20-year-old CS student at Babeș-Bolyai University in Romania.
+            My work is centered around{" "}
             <motion.span
               className="text-primary font-semibold inline-block"
               whileHover={{
@@ -316,7 +316,7 @@ const Hero = () => {
                 transition: { duration: 0.15 },
               }}
             >
-              beautiful
+              tech innovation
             </motion.span>
             ,{" "}
             <motion.span
@@ -327,7 +327,7 @@ const Hero = () => {
                 transition: { duration: 0.15 },
               }}
             >
-              functional
+              software development
             </motion.span>
             , and{" "}
             <motion.span
@@ -338,18 +338,17 @@ const Hero = () => {
                 transition: { duration: 0.15 },
               }}
             >
-              user-friendly
+              problem-solving
             </motion.span>{" "}
-            web experiences.
+            .
           </motion.p>
 
           <motion.p
             variants={itemVariants}
             className="text-md text-muted-foreground max-w-3xl mb-8 leading-relaxed"
           >
-            Currently building innovative solutions and exploring new
-            technologies. I believe in writing clean code and creating products
-            that make a difference.
+            I have a strong enthusiasm for learning new concepts and applying
+            them to develop meaningful, challenging projects.
           </motion.p>
 
           <motion.div

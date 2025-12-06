@@ -69,7 +69,7 @@ const About = () => {
       <Navigation />
 
       <main className="pt-32 pb-20">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -79,45 +79,57 @@ const About = () => {
               About <span className="text-primary">Me</span>
             </h1>
 
-            <div className="grid md:grid-cols-[1fr,300px] gap-12 mb-32">
-              <div className="prose prose-invert max-w-none">
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  I'm a passionate developer with over 5 years of experience
-                  building web applications. I love working with modern
-                  technologies and creating elegant solutions to complex
-                  problems.
-                </p>
-
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  When I'm not coding, you can find me contributing to
-                  open-source projects, writing technical blog posts, or
-                  exploring new frameworks and tools. I believe in continuous
-                  learning and sharing knowledge with the community.
-                </p>
+            <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-10 mb-32">
+              {/* Image - right on desktop, top on mobile */}
+              <div className="flex justify-center md:justify-end flex-shrink-0 order-1 md:order-2">
+                <PixelTransition
+                  firstContent={
+                    <img
+                      src={profileImage}
+                      alt="Profile"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  }
+                  secondContent={
+                    <img
+                      src={profileImageGlasses}
+                      alt="Profile with glasses"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  }
+                  gridSize={21}
+                  pixelColor="hsl(var(--background))"
+                  once={false}
+                  animationStepDuration={0.4}
+                  aspectRatio=""
+                  className="w-56 h-72 sm:w-64 sm:h-80 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-xl border-2 border-primary/30 shadow-lg shadow-primary/10 bg-background"
+                />
               </div>
 
-              <PixelTransition
-                firstContent={
-                  <img
-                    src={profileImage}
-                    alt="Profile"
-                    className="w-full h-full object-cover"
-                  />
-                }
-                secondContent={
-                  <img
-                    src={profileImageGlasses}
-                    alt="Profile with glasses"
-                    className="w-full h-full object-cover"
-                  />
-                }
-                gridSize={21}
-                pixelColor="hsl(var(--background))"
-                once={false}
-                animationStepDuration={0.4}
-                aspectRatio="100%"
-                className="w-full max-w-[300px] rounded-xl border-2 border-primary/30 shadow-lg shadow-primary/10 bg-background"
-              />
+              {/* Text - left on desktop, bottom on mobile */}
+              <div className="prose prose-invert max-w-none flex-1 order-2 md:order-1">
+                <p className="text-md text-muted-foreground leading-relaxed mb-6">
+                  I am an undergraduate student in Computer Science and
+                  Mathematics with a strong interest in technology,
+                  problem-solving, and software development. I’ve built a strong
+                  foundation in algorithms, data structures, and analytical
+                  thinking, and I enjoy putting these concepts into practice
+                  through personal projects.
+                </p>
+                <p className="text-md text-muted-foreground leading-relaxed mb-6">
+                  I like exploring new ideas and working on projects that help
+                  me grow as a developer. I’m especially interested in game
+                  development and look forward to learning more about artificial
+                  intelligence and machine learning as I progress.
+                </p>
+
+                <p className="text-md text-muted-foreground leading-relaxed mb-6">
+                  Outside my studies, I train consistently as a calisthenics
+                  athlete and I also like playing chess, both casually and
+                  online. These activities give me a steady, enjoyable balance
+                  alongside my academic work.
+                </p>
+              </div>
             </div>
 
             {/* What I Do Section */}
