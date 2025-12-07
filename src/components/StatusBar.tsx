@@ -64,8 +64,8 @@ const StatusBar = () => {
           >
             <Code2 className="w-3.5 h-3.5 text-primary" />
           </motion.div>
-          <span className="hidden sm:inline">Currently building</span>
-          <span className="sm:hidden">Building</span>
+          <span className="hidden sm:inline">Currently working on</span>
+          <span className="sm:hidden">Working on</span>
           <span className="font-medium text-foreground">
             {currentProject.title}
           </span>

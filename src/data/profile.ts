@@ -41,7 +41,7 @@ export const whatIDoCards: WhatIDoCard[] = [
   {
     title: "Building My Skillset",
     description:
-      "Developing beginner/intermediate-level web projects and games while steadily improving my full-stack abilities.",
+      "Developing beginner/intermediate-level projects and games while steadily improving my full-stack abilities.",
     icon: Code,
   },
   {
