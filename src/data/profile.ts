@@ -39,9 +39,9 @@ export const getLinkedinUsername = () => {
 
 export const whatIDoCards: WhatIDoCard[] = [
   {
-    title: "Full-Stack Development",
+    title: "Building My Skillset",
     description:
-      "Building web applications from frontend to backend, turning ideas into working products.",
+      "Developing beginner/intermediate-level web projects and games while steadily improving my full-stack abilities.",
     icon: Code,
   },
   {

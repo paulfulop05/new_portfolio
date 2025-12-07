@@ -102,7 +102,7 @@ export const projects: Project[] = [
       "An implementation of the Obstruction board game with both graphical and terminal-based interfaces.",
     features: [
       "Dual interface: GUI with pygame and terminal mode",
-      "Two-player gameplay support",
+      "Play against an AI with selectable difficulty.",
       "Visual move highlighting",
       "Game state tracking",
     ],
